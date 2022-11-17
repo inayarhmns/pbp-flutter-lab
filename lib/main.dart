@@ -1,3 +1,5 @@
+import 'package:counter_7/form.dart';
+import 'package:counter_7/details.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -11,7 +13,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'counter_7',
       theme: ThemeData(
         // This is the theme of your application.
         //
@@ -24,7 +26,7 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.blue,
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      home: const MyHomePage(title: 'counter_7'),
     );
   }
 }
@@ -96,6 +98,45 @@ class _MyHomePageState extends State<MyHomePage> {
         // the App.build method, and use it to set our appbar title.
         title: Text(widget.title),
       ),
+        // Menambahkan drawer menu
+        drawer: Drawer(
+            child: Column(
+                children: [
+                // Menambahkan clickable menu
+                ListTile(
+                        title: const Text('counter_7'),
+                        onTap: () {
+                        // Route menu ke halaman utama
+                        Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(builder: (context) => const MyHomePage(title: "counter_7")),
+                        );
+                        },
+                    ),
+                    ListTile(
+                        title: const Text('Tambah Budget'),
+                        onTap: () {
+                        // Route menu ke halaman form
+                        Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(builder: (context) => const MyFormPage()),
+                        );
+                        },
+                    ),
+                    ListTile(
+                        title: const Text('Data Budget'),
+                        onTap: () {
+                        // Route menu ke halaman form
+                        Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(builder: (context) => MyDetailsPage()),
+                        );
+                        },
+                    ),
+                ],
+                
+            ),
+        ),
       body: Center(
         // Center is a layout widget. It takes a single child and positions it
         // in the middle of the parent.
