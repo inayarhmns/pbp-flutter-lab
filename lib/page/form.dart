@@ -1,5 +1,6 @@
 import 'package:counter_7/main.dart';
-import 'package:counter_7/details.dart';
+import 'package:counter_7/page/details.dart';
+import 'package:counter_7/page/mywatchlist_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -24,15 +25,12 @@ class _MyFormPageState extends State<MyFormPage> {
       appBar: AppBar(
         title: Text('Form Budget'),
       ),
-      // Menambahkan drawer menu
       drawer: Drawer(
         child: Column(
           children: [
-            // Menambahkan clickable menu
             ListTile(
               title: const Text('counter_7'),
               onTap: () {
-                // Route menu ke halaman utama
                 Navigator.pushReplacement(
                   context,
                   MaterialPageRoute(
@@ -44,7 +42,6 @@ class _MyFormPageState extends State<MyFormPage> {
             ListTile(
               title: const Text('Form Budget'),
               onTap: () {
-                // Route menu ke halaman form
                 Navigator.pushReplacement(
                   context,
                   MaterialPageRoute(builder: (context) => const MyFormPage()),
@@ -54,7 +51,6 @@ class _MyFormPageState extends State<MyFormPage> {
             ListTile(
               title: const Text('Data Budget'),
               onTap: () {
-                // Route menu ke halaman form
                 Navigator.pushReplacement(
                   context,
                   MaterialPageRoute(
@@ -62,6 +58,17 @@ class _MyFormPageState extends State<MyFormPage> {
                 );
               },
             ),
+            ListTile(
+                title: const Text('My Watchlist'),
+                onTap: () {
+                  Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) =>
+                            MyWatchlistPage()),
+                  );
+                },
+              ),
           ],
         ),
       ),
@@ -73,7 +80,6 @@ class _MyFormPageState extends State<MyFormPage> {
             child: Column(
               children: [
                 Padding(
-                  // Menggunakan padding sebesar 8 pixels
                   padding: const EdgeInsets.all(8.0),
                   child: TextFormField(
                     decoration: InputDecoration(
@@ -146,14 +152,12 @@ class _MyFormPageState extends State<MyFormPage> {
                     },
                   ),
                 ),
-                //dropdownbutton
                 Center(
                     child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: <Widget>[
                       Container(width: 10),
                       DropdownButton(
-                        // value: null,
                         icon: const Icon(Icons.keyboard_arrow_down),
                         items: listtipeBudget.map((String items) {
                           return DropdownMenuItem(

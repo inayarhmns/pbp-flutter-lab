@@ -1,5 +1,6 @@
-import 'package:counter_7/form.dart';
-import 'package:counter_7/details.dart';
+import 'package:counter_7/page/form.dart';
+import 'package:counter_7/page/details.dart';
+import 'package:counter_7/page/mywatchlist_page.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -102,11 +103,9 @@ class _MyHomePageState extends State<MyHomePage> {
         drawer: Drawer(
             child: Column(
                 children: [
-                // Menambahkan clickable menu
                 ListTile(
                         title: const Text('counter_7'),
                         onTap: () {
-                        // Route menu ke halaman utama
                         Navigator.pushReplacement(
                             context,
                             MaterialPageRoute(builder: (context) => const MyHomePage(title: "counter_7")),
@@ -116,7 +115,6 @@ class _MyHomePageState extends State<MyHomePage> {
                     ListTile(
                         title: const Text('Tambah Budget'),
                         onTap: () {
-                        // Route menu ke halaman form
                         Navigator.pushReplacement(
                             context,
                             MaterialPageRoute(builder: (context) => const MyFormPage()),
@@ -126,13 +124,23 @@ class _MyHomePageState extends State<MyHomePage> {
                     ListTile(
                         title: const Text('Data Budget'),
                         onTap: () {
-                        // Route menu ke halaman form
                         Navigator.pushReplacement(
                             context,
                             MaterialPageRoute(builder: (context) => MyDetailsPage()),
                         );
                         },
                     ),
+                     ListTile(
+                        title: const Text('My Watchlist'),
+                        onTap: () {
+                          Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) =>
+                                    MyWatchlistPage()),
+                          );
+                        },
+                      ),
                 ],
                 
             ),
@@ -176,7 +184,6 @@ class _MyHomePageState extends State<MyHomePage> {
 
         child: Row(
         crossAxisAlignment: CrossAxisAlignment.end,
-        // mainAxisAlignment: MainAxisAlignment.end,
         children: [
           FloatingActionButton(
             onPressed: ()=> _incrementCounter(),

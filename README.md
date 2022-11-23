@@ -80,3 +80,55 @@ untuk melakukan pergantian halaman, dari halamanSatu ke halamanDua perlu dilakku
 - [x] Menghandle kemunculan data di details.dart dengan membuat Cards untuk menampilkan setiap datanya dengan for loop.
 
 
+---
+### Tugas 9
+#### Nama: Inaya Rahmanisa 
+#### NPM: 2106708330
+
+
+##  Apakah bisa kita melakukan pengambilan data JSON tanpa membuat model terlebih dahulu? 
+Bisa. Raw data json dapat diproses dengan mengambilnya sebagai `Future<http.Response>` tanpa mengubahnya menjadi objek dart terlebih dahulu. Namun, hal tersebut tidak lebih baik daripada membuat model terlebih dahulu karena hasil dari method `jsonDecode` yang digunakan untuk mengubah json menjadi data bertipe dynamic sehingga perlu diparse menjadi tipe data lain secara satu-satu.
+
+
+## Sebutkan widget apa saja yang kamu pakai di proyek kali ini dan jelaskan fungsinya.
+- Row: Adalah widget layout yang berfungsi memposisikan child widget secara horizontal. Spacing di widget ini diatur dengan mainAxisAlignment (untuk horizontal) dan crossAxisAlignment (untuk vertikal)
+- Column: Adalah widget layout yang berfungsi memposisikan child widget secara vertikal. Spacing di widget ini diatur dengan mainAxisAlignment (untuk vertikal) dan crossAxisAlignment (untuk horizontal)
+- Container: Berfungsi sebagai parent widget yang dapat mengatur child widgets di dalamnya.
+- Scaffold: Berfungsi untuk menyediakan framework untuk menambahkan komponen material seperti FloatingActionButton
+- Padding: Berfungsi untuk memberikan space pada arah tertentu, bisa menggunakan EdgeInsets.only (untuk arah yang spesifik saja) atau EdgeInsets.all untuk semua arah
+- Center: Adalah widget layout, berfungsi untuk memposisikan child widget di bagian tengah parent.
+- Icon: Berlaku sebagai container berisi logo di proyek flutter. 
+- Text: Menampilkan text di layar. Pada proyek ini dipakai untuk menampilkan kata 'GENAP', 'GANJIL', dan menampilkan counts di layar.
+- FloatingActionButton: Adalah button berbentuk bundar yang dipakai untuk event primer di aplikasi.
+- Card: Untuk menampilkan data dalam bentuk sheet tertentu. Digunakan pada details.dart
+- ListTile: widget yang berfungsi menampilkan data dalam baris yang dibagi menjadi leading, trailing, dan center.
+- Dialog: widget yang muncul di window untuk menampilkan informasi tertentu
+- FutureBuilder: Widget yang merender dirinya sendiri berdasarkan update snapshot pada Future.
+- AsyncSnapshot: representasi dari kegiatan asinkronus yang terakhir dijalankan
+- Checkbox: widget box yang bernilai true ketika dicheck dan false ketika di-uncheck
+- Drawer: widget yang berguna untuk melakukan navigasi ke halaman yang berbeda di aplikasi flutter
+- BottomAppBar: adalah app bar yang terletak pada bawah aplikasi. Biasanya digunakan dengan menginisiasi `Scaffold.bottomNavigationBar` pada Scaffold
+- ElevatedButton: Button yang ketika dihover dan diklik elevationnya bertambah
+- RichText: widget text yang bisa menampilkan text dengan style yang berbeda-beda sekaligus
+
+##  Mekanisme pengambilan data dari json hingga dapat ditampilkan pada Flutter.
+1. Membuat model sesuai dengan data json yang akan di fetch
+2. Melakukan `http.get` dari uri yang telah di parse
+3. Memanggil method `jsonDecode` yang mengembalikan data dynamic dari hasil fetch json
+4. Melakukan convert dari data dynamic tersebut ke data tipe yang sesuai dengan model yang sudah dibuat dan masukkkan hasilnya ke dalam suatu data tipe tertentu untuk dipanggil dan ditampilkan kemudian
+5. Menggunakan widget `FutureBuilder<Objek>` pada body untuk menampilkan data hasil fetch json
+6. Menambahkan properti `future` pada `FutureBuilder<Objek>` yang berisi proses fetch data dari step 1 sampai 4
+7. Menambahkan properti `builder` pada `FutureBuilder<Objek>` yang menerima parameter BuildContext dan AsyncSnapshot dimaana objek AsyncSnapshot adalah data yang akan dipanggil berdasarkan index dari json dan ditampilkan pada app flutter
+
+
+## Implementasi Checklist
+- [x] Menambahkan navigasi drawer sehingga berisi ListTile untuk details.dart, main.dart, dan form.dart, dan mywatchlist_page.dart
+- [x] Membuat model mywatchlist pada `lib/model/mywatchlist.dart` sesuai dengan field pada link json yang akan difetch
+- [x] Membuat function fetch yang ada pada `fetch_watchlist.dart` untuk mengambil data dari url dan diconvert ke dalam objek `WatchlistItem` 
+- [x] Menampilkan ListTile dari array yang berisi data json yang telah diconvert menjadi `WatchlistItem` di halaman mywatchlist_page
+- [x] Menambahkan properti `onTap` yang menavigasi ke halaman details_watchlist yang berisi data watchlist secara detail.
+- [x] Melakukan formatting data pada `details_watchlist.dart` agar sesuai dengan contoh dan menambahkan `ElevatedButton` pada `BottomAppBar` dari Scaffold `details_watchlist.dart`
+- Menambahkan checkbox pada setiap ListTile watchlist dan status dari watched akan berubah sesuai dengan nilai checkbox, begitupula warna dari ListTile watchlist yang bersangkutan
+- Menambahkan outline warna hijau jika telah ditonton dan kuning jika masih listed
+- Memindahkan fungsi `fetchWatchlist()` ke dalam file `fetch_watchlist.dart`
+

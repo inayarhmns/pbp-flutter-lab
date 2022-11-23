@@ -1,5 +1,6 @@
 import 'package:counter_7/main.dart';
-import 'package:counter_7/form.dart';
+import 'package:counter_7/page/mywatchlist_page.dart';
+import 'package:counter_7/page/form.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -22,15 +23,12 @@ class _MyDetailsPageState extends State<MyDetailsPage> {
         appBar: AppBar(
           title: Text('Data Budget'),
         ),
-        // Menambahkan drawer menu
         drawer: Drawer(
           child: Column(
             children: [
-              // Menambahkan clickable menu
               ListTile(
                 title: const Text('counter_7'),
                 onTap: () {
-                  // Route menu ke halaman utama
                   Navigator.pushReplacement(
                     context,
                     MaterialPageRoute(
@@ -42,7 +40,6 @@ class _MyDetailsPageState extends State<MyDetailsPage> {
               ListTile(
                 title: const Text('Form Budget'),
                 onTap: () {
-                  // Route menu ke halaman form
                   Navigator.pushReplacement(
                     context,
                     MaterialPageRoute(builder: (context) => const MyFormPage()),
@@ -52,12 +49,18 @@ class _MyDetailsPageState extends State<MyDetailsPage> {
               ListTile(
                 title: const Text('Data Budget'),
                 onTap: () {
-                  // Route menu ke halaman form
                   Navigator.pushReplacement(
                     context,
-                    MaterialPageRoute(
-                        builder: (context) =>
-                            MyDetailsPage()),
+                    MaterialPageRoute(builder: (context) => MyDetailsPage()),
+                  );
+                },
+              ),
+              ListTile(
+                title: const Text('My Watchlist'),
+                onTap: () {
+                  Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(builder: (context) => MyWatchlistPage()),
                   );
                 },
               ),
@@ -66,37 +69,33 @@ class _MyDetailsPageState extends State<MyDetailsPage> {
         ),
         body: Column(
           children: <Widget>[
-            
-              if (isiDetails.isEmpty)
-                Text("Belum ada data budget")
-              else  
-              for (int i = 0; i < isiDetails.length; i++)  
+            if (isiDetails.isEmpty)
+              Text("Belum ada data budget")
+            else
+              for (int i = 0; i < isiDetails.length; i++)
                 Padding(
                   padding: EdgeInsets.only(left: 8, right: 8),
-                  child:
-                  Container(
+                  child: Container(
                     height: 100,
                     child: Card(
-                        child: Row(
-                          children: <Widget>[
-                            Column(
-                               textDirection: TextDirection.ltr,
-                              children: <Widget>[
-                              
-                              Text(isiDetails.elementAt(i)["judul"], style: TextStyle(fontSize: 25),),
-                              Text(isiDetails.elementAt(i)["nominal"],),
-                              Text(isiDetails.elementAt(i)["tipeBudget"])])
-                              
-                             ]),
-                        
-                      
-
-                    
-                  ),
+                      child: Row(children: <Widget>[
+                        Column(
+                            textDirection: TextDirection.ltr,
+                            children: <Widget>[
+                              Text(
+                                isiDetails.elementAt(i)["judul"],
+                                style: TextStyle(fontSize: 25),
+                              ),
+                              Text(
+                                isiDetails.elementAt(i)["nominal"],
+                              ),
+                              Text(isiDetails.elementAt(i)["tipeBudget"])
+                            ])
+                      ]),
+                    ),
                   ),
                 ),
           ],
         ));
   }
-
 }
